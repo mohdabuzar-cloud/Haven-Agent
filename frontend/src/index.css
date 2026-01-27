@@ -209,7 +209,6 @@
     
     /* Stagger animations for children */
     .stagger-children > * {
-        opacity: 0;
         animation: fadeSlideUp var(--transition-slow) ease-out forwards;
     }
     
