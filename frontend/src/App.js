@@ -1,53 +1,59 @@
-import { useEffect } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { OnboardingProvider } from "@/context/OnboardingContext";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+// Screen imports
+import { Screen1Welcome } from "@/screens/Screen1Welcome";
+import { Screen2Eligibility } from "@/screens/Screen2Eligibility";
+import { Screen3BasicDetails } from "@/screens/Screen3BasicDetails";
+import { Screen4Documents } from "@/screens/Screen4Documents";
+import { Screen5Verification } from "@/screens/Screen5Verification";
+import { Screen6Failed } from "@/screens/Screen6Failed";
+import { Screen7Approved } from "@/screens/Screen7Approved";
+import { Screen8Activation } from "@/screens/Screen8Activation";
+import { Screen9Success } from "@/screens/Screen9Success";
+import { Screen10Dashboard } from "@/screens/Screen10Dashboard";
 
 function App() {
   return (
-    <div className="App">
+    <OnboardingProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
+          {/* Screen 1: Welcome */}
+          <Route path="/" element={<Screen1Welcome />} />
+          
+          {/* Screen 2: Eligibility */}
+          <Route path="/onboarding/eligibility" element={<Screen2Eligibility />} />
+          
+          {/* Screen 3: Basic Details */}
+          <Route path="/onboarding/details" element={<Screen3BasicDetails />} />
+          
+          {/* Screen 4: Document Upload */}
+          <Route path="/onboarding/documents" element={<Screen4Documents />} />
+          
+          {/* Screen 5: Verification In Progress */}
+          <Route path="/onboarding/verification" element={<Screen5Verification />} />
+          
+          {/* Screen 6: Verification Failed */}
+          <Route path="/onboarding/failed" element={<Screen6Failed />} />
+          
+          {/* Screen 7: Verification Approved */}
+          <Route path="/onboarding/approved" element={<Screen7Approved />} />
+          
+          {/* Screen 8: Account Activation */}
+          <Route path="/onboarding/activate" element={<Screen8Activation />} />
+          
+          {/* Screen 9: Activation Success */}
+          <Route path="/onboarding/success" element={<Screen9Success />} />
+          
+          {/* Screen 10: Dashboard */}
+          <Route path="/dashboard" element={<Screen10Dashboard />} />
+          
+          {/* Catch-all redirect */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </OnboardingProvider>
   );
 }
 
