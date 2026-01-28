@@ -38,13 +38,13 @@ function setupDevServer(config) {
         return true;
       }
 
-      // Allow all emergent.sh subdomains
-      if (origin.match(/^https:\/\/([a-zA-Z0-9-]+\.)*emergent\.sh$/)) {
+      // Allow all heaven.sh subdomains
+      if (origin.match(/^https:\/\/([a-zA-Z0-9-]+\.)*heaven\.sh$/)) {
         return true;
       }
 
-      // Allow all emergentagent.com subdomains
-      if (origin.match(/^https:\/\/([a-zA-Z0-9-]+\.)*emergentagent\.com$/)) {
+      // Allow all heavenagent.com subdomains
+      if (origin.match(/^https:\/\/([a-zA-Z0-9-]+\.)*heavenagent\.com$/)) {
         return true;
       }
 
